@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="studentName" placeholder="Nhập tên sinh viên" />
+  <button onclick="addStudent()">Thêm sinh viên</button>
+
+  <h3>Danh sách sinh viên:</h3>
+  <ul id="studentList"></ul>
+
+  <p><strong>Tổng số sinh viên:</strong> <span id="totalCount">0</span></p>
+
+  <script>
+    const studentList = document.getElementById("studentList");
+    const totalCount = document.getElementById("totalCount");
+
+    function addStudent() {
+      const nameInput = document.getElementById("studentName");
+      const name = nameInput.value.trim();
+
+      if (name === "") {
+        alert("Vui lòng nhập tên sinh viên.");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.textContent = name;
+      li.onclick = function () {
+        alert("Bạn đã chọn: " + name);
+      };
+
+      studentList.appendChild(li);
+      nameInput.value = "";
+      updateCount();
+    }
+
+    function updateCount() {
+      const count = studentList.getElementsByTagName("li").length;
+      totalCount.textContent = count;
+    }
+  </script>
+</body>
+</html>
